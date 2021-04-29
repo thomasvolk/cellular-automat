@@ -1,1 +1,5 @@
 src
+node_modules
+*.tgz
+*.tar.gz
+example
