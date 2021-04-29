@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>cellular-js example</title>
+  </head>
+  <body>
+    <h1>cellular-js example</h1>
+    <div class="canvas">
+      <canvas width="600" height="600" id="canvas"></canvas>
+    </div>
+    <script src="./dist/index.js"></script>
+    <script>
+      var config = new cellularJs.Configuration(
+          new cellularJs.Universe(300, 300), 
+          new cellularJs.EEFFRule(2, 3, 3, 3), 1
+          )
+      var ca = new cellularJs.CellularAutomat(document.getElementById('canvas'), config)
+      ca.random()
+      ca.start()
+
+    </script>
+  </body>
+</html>

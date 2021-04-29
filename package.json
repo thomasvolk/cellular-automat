@@ -1,0 +1,39 @@
+{
+  "name": "cellular-js",
+  "version": "1.0.0",
+  "description": "cellular-js is a javascript library of a cellular automat like conways game of life",
+  "main": "lib/CellularAutomat.js",
+  "module": "lib/CellularAutomat.js",
+  "types": "lib/CellularAutomat.d.ts",
+  "scripts": {
+    "build": "tsc -p .",
+    "test": "mocha -r ts-node/register test/**/*spec.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thomasvolk/cellular-js.git"
+  },
+  "keywords": [
+    "typescript",
+    "javascript",
+    "cellular",
+    "automat",
+    "game",
+    "of",
+    "life"
+  ],
+  "author": "Thomas Volk <info@thomasvolk.de> (https://thomasvolk.de/)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/thomasvolk/cellular-js/issues"
+  },
+  "homepage": "https://github.com/thomasvolk/cellular-js",
+  "devDependencies": {
+    "@types/chai": "^4.2.15",
+    "@types/mocha": "^8.2.2",
+    "chai": "^4.3.4",
+    "mocha": "^8.3.2",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.4"
+  }
+}

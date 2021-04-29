@@ -1,0 +1,19 @@
+{
+  "name": "cellular-js-example",
+  "version": "0.0.1",
+  "description": "",
+  "types": "dist",
+  "private": true,
+  "scripts": {
+    "build": "webpack"
+  },
+  "keywords": [],
+  "author": "Thomas Volk",
+  "devDependencies": {
+    "webpack": "^5.35.1",
+    "webpack-cli": "^4.6.0"
+  },
+  "dependencies": {
+    "cellular-js": "file:../../"
+  }
+}
