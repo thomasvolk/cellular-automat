@@ -1,6 +1,6 @@
 # cellular-js
 
-cellular-js is a javascript library of a cellular automat like conways game of life.
+cellular-automat is a javascript library of a cellular automat like conways game of life.
 
 prepare:
 
@@ -26,7 +26,7 @@ import {
     EEFFRule, 
     Universe,
     CellularAutomat
-} from "cellular-js";
+} from "cellular-automat";
 
 
 const config = new Configuration(new Universe(300, 300), new EEFFRule(2, 3, 3, 3), 1)
