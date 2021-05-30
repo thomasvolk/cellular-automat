@@ -11,11 +11,11 @@
     </div>
     <script src="./dist/index.js"></script>
     <script>
-      var config = new cellularJs.Configuration(
-          new cellularJs.Universe(300, 300), 
-          new cellularJs.EEFFRule(2, 3, 3, 3), 1
+      var config = new CA.Configuration(
+          new CA.Universe(300, 300), 
+          new CA.EEFFRule(2, 3, 3, 3), 1
           )
-      var ca = new cellularJs.CellularAutomat(document.getElementById('canvas'), config)
+      var ca = new CA.CellularAutomat(document.getElementById('canvas'), config)
       ca.random()
       ca.start()
 

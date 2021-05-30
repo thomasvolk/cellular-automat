@@ -17,6 +17,6 @@
   },
   "dependencies": {
     "@types/cellular-js": "file:../../",
-    "cellular-js": "file:../../"
+    "cellular-automat": "file:../../"
   }
 }

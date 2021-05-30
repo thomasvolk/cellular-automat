@@ -1,2 +1,2 @@
-cellularJs = require("cellular-js")
+CA = require("cellular-automat")
 

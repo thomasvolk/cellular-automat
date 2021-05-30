@@ -3,7 +3,7 @@ import {
     EEFFRule, 
     Universe,
     CellularAutomat
-} from "cellular-js";
+} from "cellular-automat";
 
 
 const config = new Configuration(new Universe(30, 30), new EEFFRule(2, 3, 3, 3), 100)
