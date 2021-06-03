@@ -1,5 +1,5 @@
 {
-  "name": "cellular-js-example",
+  "name": "cellular-automat-ts-example",
   "version": "0.0.1",
   "description": "",
   "types": "dist",
@@ -16,7 +16,7 @@
     "webpack-cli": "^4.6.0"
   },
   "dependencies": {
-    "@types/cellular-js": "file:../../",
+    "@types/cellular-automat": "file:../../",
     "cellular-automat": "file:../../"
   }
 }

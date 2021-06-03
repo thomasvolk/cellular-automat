@@ -1,7 +1,7 @@
 {
   "name": "cellular-automat",
   "version": "1.0.0",
-  "description": "cellular-js is a javascript library of a cellular automat like conways game of life",
+  "description": "cellular-automat is a javascript library of a cellular automat like conways game of life",
   "main": "lib/CellularAutomat.js",
   "module": "lib/CellularAutomat.js",
   "types": "lib/CellularAutomat.d.ts",
