@@ -285,11 +285,17 @@ export class CellularAutomat{
         config: Configuration, 
         aliveColor: string = 'black',
         deadColor: string = 'white',
-        frameSize: number = 0
+        frameSize: number = 0,
+        cellSize: number = 0
     ) {
         this.canvas = canvas
-        this.cellSize = Math.round(
-            Math.min(this.canvas.height, this.canvas.width) / Math.max(config.universe.width, config.universe.height))
+        if(cellSize > 0) {
+            this.cellSize = cellSize
+        }
+        else {
+            this.cellSize = Math.round(
+                Math.min(this.canvas.height, this.canvas.width) / Math.max(config.universe.width, config.universe.height))
+            }
         if(this.cellSize > (frameSize * 3) ) {
             this.cellBoxSize = this.cellSize - (frameSize * 2)
             this.frameSize = frameSize
