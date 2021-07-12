@@ -1,8 +1,7 @@
 import { expect, assert } from 'chai';
 import {
     Universe, 
-    EEFFRule, 
-    Cell
+    EEFFRule
 } from "../src/CellularAutomat";
 
 describe('Universe2D', () => {
