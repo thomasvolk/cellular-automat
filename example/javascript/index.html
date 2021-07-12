@@ -13,9 +13,9 @@
     <script>
       var config = new CA.Configuration(
           new CA.Universe(300, 300), 
-          new CA.EEFFRule(2, 3, 3, 3), 1
+          new CA.EEFFRule(2, 3, 3, 3)
           )
-      var ca = new CA.CellularAutomat(document.getElementById('canvas'), config)
+      var ca = new CA.CellularAutomat(document.getElementById('canvas'), config, 1)
       ca.random()
       ca.start()
 

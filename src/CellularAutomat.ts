@@ -3,6 +3,8 @@ import {Universe} from './Universe'
 export {Universe} from './Universe'
 import {Rule, EEFFRule} from './Rule'
 export {EEFFRule} from './Rule'
+import {Configuration} from './Configuration'
+export {Configuration} from './Configuration'
 
 
 export class Runner {
@@ -23,19 +25,6 @@ export class Runner {
     }
 }
 
-export class Configuration {
-    universe: Universe
-    rule: Rule
-    delay_ms: number
-
-    constructor(universe: Universe, rule: Rule, delay_ms: number) {
-        this.universe = universe
-        this.rule = rule
-        this.delay_ms = delay_ms
-    }
-}
-
-
 export class CellularAutomat{
     private canvas: HTMLCanvasElement
     private context: CanvasRenderingContext2D
@@ -46,15 +35,18 @@ export class CellularAutomat{
     private aliveColor: string
     private frameSize: number
     private cellBoxSize: number
+    private delay_ms: number
 
     constructor(
         canvas: HTMLCanvasElement, 
         config: Configuration, 
+        delay_ms: number,
         aliveColor: string = 'black',
         deadColor: string = 'white',
         frameSize: number = 0,
         cellSize: number = 0
     ) {
+        this.delay_ms = delay_ms
         this.canvas = canvas
         if(cellSize > 0) {
             this.cellSize = cellSize
@@ -109,7 +101,7 @@ export class CellularAutomat{
             this.interval = setInterval(()=> { 
                 this.draw()
                 runner.next()
-            }, this.config.delay_ms);
+            }, this.delay_ms);
         }
     }
 
