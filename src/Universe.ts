@@ -2,9 +2,9 @@ import {Cell} from './Cell'
 
 export class Universe {
     private cells: Array<Cell>
-    width: number
-    height: number
-    endless: boolean
+    readonly width: number
+    readonly height: number
+    readonly endless: boolean
     
     constructor(width: number, height: number, endless: boolean = true) {
         this.width = width

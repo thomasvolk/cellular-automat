@@ -4,7 +4,7 @@ import {
     EEFFRule
 } from "../src/CellularAutomat";
 
-describe('Universe2D', () => {
+describe('Universe', () => {
     it('should initialize properly', () => {
         const u = new Universe(20, 20);
         expect(u.width).to.equal(20)
@@ -77,53 +77,5 @@ describe('cycle function', () => {
         });
         
         assert(isNaN(Universe.cycle(0,   0)), "cycle(0,   0) = NaN")
-    });
-});
-
-describe('ConwayAlgorithm', () => {
-    it('should normalizeToOneOrZero', () => {
-        expect(
-            EEFFRule.normalizeToOneOrZero([5, 0.7, 0, 1, -1, 0]).join(",")
-        ).to.equal("1,1,0,1,0,0")
-    });
-    it('should implement the rules correctly', () => {
-        const testData = [
-            {
-                'cell': 1,
-                'neighbours': [1, 1, 0, 0, 0, 0],
-                'expected': 1
-            },
-            {
-                'cell': 1,
-                'neighbours': [1, 1, 0, 0, 0, 0, 0, 0, 0],
-                'expected': 1
-            },
-            {
-                'cell': 0,
-                'neighbours': [1, 1, 0, 0, 0, 0, 0, 0, 0],
-                'expected': 0
-            },
-            {
-                'cell': 0,
-                'neighbours': [1, 1, 1, 0, 0, 0, 0, 0, 0],
-                'expected': 1
-            },
-            {
-                'cell': 1,
-                'neighbours': [1, 1, 1, 1, 0, 0, 0, 0, 0],
-                'expected': 0
-            },
-            {
-                'cell': 1,
-                'neighbours': [1, 0, 0, 0, 0, 0, 0, 0, 0],
-                'expected': 0
-            }
-        ]
-        const conwayRule = new EEFFRule(2, 3, 3, 3)
-        testData.forEach(testSet => {
-            expect(
-                conwayRule.calculateNewValue(testSet.cell, testSet.neighbours)
-            ).to.equal(testSet.expected);
-        });
     });
 });

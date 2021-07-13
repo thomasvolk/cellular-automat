@@ -1,10 +1,11 @@
 export {Cell} from './Cell'
 import {Universe} from './Universe'
 export {Universe} from './Universe'
-import {Rule, EEFFRule} from './Rule'
+import {Rule} from './Rule'
 export {EEFFRule} from './Rule'
 import {Configuration} from './Configuration'
 export {Configuration} from './Configuration'
+export {Format} from './Format'
 
 
 export class Runner {
