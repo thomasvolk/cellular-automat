@@ -1,5 +1,5 @@
 import {Universe} from './Universe'
-import {Rule, EEFFRule} from './Rule'
+import {Rule} from './Rule'
 
 
 export class Configuration {

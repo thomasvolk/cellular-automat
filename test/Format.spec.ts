@@ -1,7 +1,6 @@
-import { expect, assert } from 'chai';
+import { expect } from 'chai';
 import {
     Configuration, 
-    Format,
     Universe,
     EEFFRule
 } from "../src/CellularAutomat";
