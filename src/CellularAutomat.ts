@@ -36,18 +36,15 @@ export class CellularAutomat{
     private aliveColor: string
     private frameSize: number
     private cellBoxSize: number
-    private delay_ms: number
 
     constructor(
         canvas: HTMLCanvasElement, 
-        config: Configuration, 
-        delay_ms: number,
+        config: Configuration,
         aliveColor: string = 'black',
         deadColor: string = 'white',
         frameSize: number = 0,
         cellSize: number = 0
     ) {
-        this.delay_ms = delay_ms
         this.canvas = canvas
         if(cellSize > 0) {
             this.cellSize = cellSize
@@ -96,13 +93,13 @@ export class CellularAutomat{
         }
     }
 
-    start() {
+    start(delay_ms: number = 0) {
         if (!this.isRunning()) {
             const runner = new Runner(this.config.universe, this.config.rule)
             this.interval = setInterval(()=> { 
                 this.draw()
                 runner.next()
-            }, this.delay_ms);
+            }, delay_ms);
         }
     }
 
