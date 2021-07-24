@@ -29,7 +29,7 @@ import {
 } from "cellular-automat";
 
 
-const config = new Configuration(new Universe(300, 300), new EEFFRule(2, 3, 3, 3), 1)
+const config = new Configuration(new Universe(300, 300), new EEFFRule(2, 3, 3, 3))
 var ca = new CellularAutomat(document.getElementById('canvas') as HTMLCanvasElement, config)
 ca.random()
 ca.start()
@@ -42,7 +42,7 @@ This is the javascript example. See the [example project](example/javascript/REA
 ```js
 var config = new cellularJs.Configuration(
     new cellularJs.Universe(300, 300), 
-    new cellularJs.EEFFRule(2, 3, 3, 3), 1
+    new cellularJs.EEFFRule(2, 3, 3, 3)
     )
 var ca = new cellularJs.CellularAutomat(document.getElementById('canvas'), config)
 ca.random()
