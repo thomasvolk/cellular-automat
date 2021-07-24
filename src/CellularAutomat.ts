@@ -5,7 +5,7 @@ import {Rule} from './Rule'
 export {EEFFRule} from './Rule'
 import {Configuration} from './Configuration'
 export {Configuration} from './Configuration'
-export {Format} from './Format'
+export {Format, JsonFormat} from './Format'
 
 
 export class Runner {
