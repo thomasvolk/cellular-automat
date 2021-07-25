@@ -14,6 +14,27 @@ function countLivingNeighbours(neighbourValues: Array<number>) {
     return normalizedValues.reduce((sum, current) => sum + current, 0)
 }
 
+export class BSRule implements Rule {
+    readonly born: Array<number>
+    readonly stayAlive: Array<number>
+
+    constructor(born: Array<number>, stayAlive: Array<number>) {
+        this.born = born
+        this.stayAlive = stayAlive
+    }
+
+    calculateNewValue(cellValue: number, neighbourValues: number[]): number {
+        const livingNeighbours = countLivingNeighbours(neighbourValues)
+        if(cellValue > 0 && this.stayAlive.indexOf(livingNeighbours) >= 0) {
+            return cellValue
+        }
+        else if(cellValue == 0 && this.born.indexOf(livingNeighbours) >= 0) {
+            return 1
+        }
+        return 0
+    }
+}
+
 export class EEFFRule implements Rule {
     readonly el: number
     readonly eu: number
@@ -37,25 +58,16 @@ export class EEFFRule implements Rule {
         }
         return cellValue
     }
-}
 
-export class BSRule implements Rule {
-    readonly born: Array<number>
-    readonly stayAlive: Array<number>
-
-    constructor(born: Array<number>, stayAlive: Array<number>) {
-        this.born = born
-        this.stayAlive = stayAlive
-    }
-
-    calculateNewValue(cellValue: number, neighbourValues: number[]): number {
-        const livingNeighbours = countLivingNeighbours(neighbourValues)
-        if(cellValue > 0 && this.stayAlive.indexOf(livingNeighbours) >= 0) {
-            return cellValue
+    toBSRule(): BSRule {
+        var born = Array<number>();
+        for(var i = this.fl; i <= this.fu; i++) {
+            born.push(i)
         }
-        else if(cellValue == 0 && this.born.indexOf(livingNeighbours) >= 0) {
-            return 1
+        var stay = Array<number>();
+        for(var i = this.el; i <= this.eu; i++) {
+            stay.push(i)
         }
-        return 0
+        return new BSRule(born, stay)
     }
 }

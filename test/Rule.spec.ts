@@ -47,7 +47,7 @@ describe('ConwayRule', () => {
         }
     ]
 
-    it('should implement the EEFFRule correctly', () => {
+    it('should implemented by the EEFFRule correctly', () => {
         const conwayEEFFRule = new EEFFRule(2, 3, 3, 3)
         testData.forEach(testSet => {
             expect(
@@ -56,7 +56,7 @@ describe('ConwayRule', () => {
         });
     });
 
-    it('should implement the BSRule correctly', () => {
+    it('should implemented by the BSRule correctly', () => {
         const conwayBSRule = new BSRule([3], [2, 3])
         testData.forEach(testSet => {
             expect(
@@ -64,4 +64,17 @@ describe('ConwayRule', () => {
             ).to.equal(testSet.expected);
         });
     });
+
+    it('should be converted to BSRule correctly', () => {
+        const conwayEEFFRule = new EEFFRule(2, 3, 3, 3)
+        const conwayBSRule = conwayEEFFRule.toBSRule()
+        expect(conwayBSRule.born).to.eql([3] as Array<number>)
+        expect(conwayBSRule.stayAlive).to.eql([2, 3])
+
+        testData.forEach(testSet => {
+            expect(
+                conwayBSRule.calculateNewValue(testSet.cell, testSet.neighbours)
+            ).to.equal(testSet.expected);
+        });
+    })
 });
