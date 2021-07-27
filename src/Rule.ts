@@ -33,6 +33,25 @@ export class BSRule implements Rule {
         }
         return 0
     }
+
+    static convert(rule: Rule): BSRule {
+        if(rule instanceof EEFFRule) {
+            const eeffRule = rule as EEFFRule
+            var born = Array<number>();
+            for(var i = eeffRule.fl; i <= eeffRule.fu; i++) {
+                born.push(i)
+            }
+            var stay = Array<number>();
+            for(var i = eeffRule.el; i <= eeffRule.eu; i++) {
+                stay.push(i)
+            }
+            return new BSRule(born, stay)
+        }
+        else if(rule instanceof BSRule) {
+            return rule as BSRule
+        }
+        throw new Error(`can not convert rule: ${rule}`)
+    }
 }
 
 export class EEFFRule implements Rule {
@@ -57,17 +76,5 @@ export class EEFFRule implements Rule {
             return 1
         }
         return cellValue
-    }
-
-    toBSRule(): BSRule {
-        var born = Array<number>();
-        for(var i = this.fl; i <= this.fu; i++) {
-            born.push(i)
-        }
-        var stay = Array<number>();
-        for(var i = this.el; i <= this.eu; i++) {
-            stay.push(i)
-        }
-        return new BSRule(born, stay)
     }
 }
