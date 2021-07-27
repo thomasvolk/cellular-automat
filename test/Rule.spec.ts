@@ -62,7 +62,7 @@ describe('BSRule.convert', () => {
         const conwayEEFFRule = new EEFFRule(2, 3, 3, 3)
         const conwayBSRule = BSRule.convert(conwayEEFFRule)
         expect(conwayBSRule.born).to.eql([3] as Array<number>)
-        expect(conwayBSRule.stayAlive).to.eql([2, 3])
+        expect(conwayBSRule.stay).to.eql([2, 3])
 
         testData.forEach(testSet => {
             expect(
@@ -76,7 +76,7 @@ describe('BSRule.convert', () => {
         const conwayBSRuleSameObj = BSRule.convert(conwayBSRule)
         expect(conwayBSRule).to.equal(conwayBSRuleSameObj)
         expect(conwayBSRule.born).to.eql([3] as Array<number>)
-        expect(conwayBSRule.stayAlive).to.eql([2, 3])
+        expect(conwayBSRule.stay).to.eql([2, 3])
 
         testData.forEach(testSet => {
             expect(

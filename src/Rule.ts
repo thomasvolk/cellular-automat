@@ -16,16 +16,16 @@ function countLivingNeighbours(neighbourValues: Array<number>) {
 
 export class BSRule implements Rule {
     readonly born: Array<number>
-    readonly stayAlive: Array<number>
+    readonly stay: Array<number>
 
     constructor(born: Array<number>, stayAlive: Array<number>) {
         this.born = born
-        this.stayAlive = stayAlive
+        this.stay = stayAlive
     }
 
     calculateNewValue(cellValue: number, neighbourValues: number[]): number {
         const livingNeighbours = countLivingNeighbours(neighbourValues)
-        if(cellValue > 0 && this.stayAlive.indexOf(livingNeighbours) >= 0) {
+        if(cellValue > 0 && this.stay.indexOf(livingNeighbours) >= 0) {
             return cellValue
         }
         else if(cellValue == 0 && this.born.indexOf(livingNeighbours) >= 0) {
