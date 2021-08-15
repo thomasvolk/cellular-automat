@@ -81,14 +81,7 @@ export class JsonFormat implements Format {
 export class RleFormat implements Format {
 
     private mapRow(row: Array<Cell>) {
-        return row.map(c => {
-            if(c.getValue() > 0) {
-                return "o"
-            }
-            else {
-                return "b"
-            }
-        }).join('')
+        return row.map(c => c.getValue() > 0 ? 'o' : 'b').join('')
     }
         
     decode(source: string): Configuration {
