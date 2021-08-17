@@ -11,6 +11,17 @@ import {
 
 
 describe('RleFormat', () => {
+    it('should uncompress rows correctly', () => {
+        expect(RleFormat.uncompress('1o5b16obobo$')).to.equal('obbbbboooooooooooooooobobo$')
+        expect(RleFormat.uncompress('o!')).to.equal('o!')
+        expect(RleFormat.uncompress('0b')).to.equal('')
+        // invalid rows
+        expect(RleFormat.uncompress('o')).to.equal('o')
+        expect(RleFormat.uncompress('b')).to.equal('b')
+        expect(RleFormat.uncompress('!')).to.equal('')
+        expect(RleFormat.uncompress('$')).to.equal('')
+    })
+
     it('should encode a configuration to a rle string', () => {
         const config = new Configuration(new Universe(10, 10), new EEFFRule(2, 3, 3, 3))
         config.universe.getCell(0, 0).enterValue(1).apply()
