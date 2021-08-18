@@ -100,8 +100,16 @@ export class RleFormat implements Format {
         return row
     }
 
+    public static hasAliveCells(row: Array<Cell>): boolean {
+        return row.map((c) => c.getValue()).reduce((p, c) => p + c) > 0
+    }
+
     public static cutDeadRowsTail(rows: Array<Array<Cell>>): Array<Array<Cell>> {
-        return rows
+        const lastLivingCellRowIndex = rows.reduceRight(
+            (acc, row, i) => acc == 0 && this.hasAliveCells(row) ? i : acc,
+            0
+        )
+        return Array.from(rows).splice(0, lastLivingCellRowIndex + 1)
     }
     
     public static mapRow(row: Array<Cell>) {
