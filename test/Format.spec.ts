@@ -11,6 +11,15 @@ import {
 
 
 describe('RleFormat', () => {
+    it('should compress rows correctly', () => {
+        expect(RleFormat.compress('obobo$')).to.equal('obobo')
+        expect(RleFormat.compress('o!')).to.equal('o')
+        expect(RleFormat.compress('ooo!')).to.equal('3o')
+        expect(RleFormat.compress('bb$')).to.equal('')
+        expect(RleFormat.compress('bobb$')).to.equal('bo')
+        expect(RleFormat.compress('obbbbboooooooooooooooobobo$')).to.equal('o5b16obobo')
+    })
+
     it('should uncompress rows correctly', () => {
         expect(RleFormat.uncompress('1o5b16obobo$')).to.equal('obbbbboooooooooooooooobobo$')
         expect(RleFormat.uncompress('o!')).to.equal('o!')

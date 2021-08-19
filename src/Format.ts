@@ -97,7 +97,19 @@ export class RleFormat implements Format {
     }
 
     public static compress(row: string): string {
-        return row
+        const sections = row.split(/(o+|b+)/).filter(s => s.match(/^b+$|^o+$/))
+        const lastSection = sections[sections.length - 1]
+        if(lastSection.match(/^b+$/)) {
+            sections.pop()
+        }
+        function compressSection(section: string) {
+            if(section.length > 1) {
+                const item = section[0]
+                return `${section.length}${item}`
+            }
+            return section
+        }
+        return sections.map(compressSection).join('')
     }
 
     public static hasAliveCells(row: Array<Cell>): boolean {
@@ -119,6 +131,7 @@ export class RleFormat implements Format {
     decode(source: string): Configuration {
         throw new Error('Method not implemented.');
     }
+
     encode(config: Configuration): string {
         const rule = BSRule.convert(config.rule)
         const b = rule.born.join('')
