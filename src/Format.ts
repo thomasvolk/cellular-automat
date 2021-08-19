@@ -93,7 +93,7 @@ export class RleFormat implements Format {
             else {
                 return []
             }
-        }).flat().join('')
+        }).flat().filter( e => e == 'o' || e == 'b').join('')
     }
 
     public static compress(row: string): string {

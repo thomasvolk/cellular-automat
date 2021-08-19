@@ -21,8 +21,8 @@ describe('RleFormat', () => {
     })
 
     it('should uncompress rows correctly', () => {
-        expect(RleFormat.uncompress('1o5b16obobo$')).to.equal('obbbbboooooooooooooooobobo$')
-        expect(RleFormat.uncompress('o!')).to.equal('o!')
+        expect(RleFormat.uncompress('1o5b16obobo$')).to.equal('obbbbboooooooooooooooobobo')
+        expect(RleFormat.uncompress('o!')).to.equal('o')
         expect(RleFormat.uncompress('0b')).to.equal('')
         // invalid rows
         expect(RleFormat.uncompress('o')).to.equal('o')
