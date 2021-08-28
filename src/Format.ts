@@ -81,8 +81,8 @@ export class RleFormat implements Format {
     private static COMPRESSED_ENTRY = /([0-9]+o|[0-9]+b)/
 
     public static uncompress(row: string): string {
-        return row.split(this.COMPRESSED_ENTRY).map(e => {
-            if(e.match(this.COMPRESSED_ENTRY)) {
+        return row.split(RleFormat.COMPRESSED_ENTRY).map(e => {
+            if(e.match(RleFormat.COMPRESSED_ENTRY)) {
                 const c = e.split(/[0-9]+/)[1]
                 const cnt = Number(e.split(/o|b/)[0])
                 return [...Array(cnt)].map((_, i) => c)
@@ -129,7 +129,39 @@ export class RleFormat implements Format {
     }
     
     decode(source: string): Configuration {
-        throw new Error('Method not implemented.');
+        const lines = source.split(/\r?\n/)
+        // get width and height
+        const header_x = /x\s*=\s*([0-9]+)/
+        const header_y = /y\s*=\s*([0-9]+)/
+        const header_line = lines.find(l => l.match(header_x) && l.match(header_y))
+        if(!header_line) {
+            throw new Error('no header line found (x = m, y = n)');
+        }
+        const x = Number(header_line.match(header_x)![1])
+        const y = Number(header_line.match(header_y)![1])
+        // get rule
+        const header_rule = /rule\s*=\s*B([0-9]+)\/S([0-9]+)/ 
+        const default_rule = ['rule = B3/S23', '3', '23']
+        const rule_match = header_line.match(header_rule) || default_rule
+        const b = rule_match[1].split('').map(e => Number(e))
+        const s = rule_match[2].split('').map(e => Number(e))
+        const rule = new BSRule(b, s)
+        // parse body lines
+        const body_line = /^[0-9|o|b|\$|\!]+$/
+        const body = lines.filter(l => l.match(body_line)).join('')
+        const termination = body.indexOf('!')
+        const rows = body.substr(0, termination).split('$').map(RleFormat.uncompress)
+        // create universe
+        const universe = new Universe(x, y)
+        rows.forEach((row, ry) => {
+            row.split('').forEach( (c, rx) => {
+                if(c == 'o') {
+                    universe.getCell(rx, ry).enterValue(1).apply()
+                }
+            } )
+        })
+
+        return new Configuration(universe, rule)
     }
 
     encode(config: Configuration): string {

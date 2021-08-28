@@ -57,6 +57,9 @@ o$bo$2bo5bo$3b2o!
         const cfg = f.decode(json)
         expect(cfg.universe.height).to.equal(10)
         expect(cfg.universe.width).to.equal(10)
+        expect(cfg.universe.getCell(0, 0).getValue()).to.equal(1)
+        expect(cfg.universe.getCell(0, 1).getValue()).to.equal(0)
+        expect(cfg.universe.getCell(1, 1).getValue()).to.equal(1)
     });
 });
 
