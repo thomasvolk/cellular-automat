@@ -46,6 +46,17 @@ export class Universe {
         return this.cells
     }
 
+    getCellRows(): Array<Array<Cell>> {
+        const rows = Array<Array<Cell>>()
+        for(var y = 0; y < this.height; y++) {
+            const begin = y*this.width
+            const row = this.getCells().slice(begin, begin + this.width)
+            rows.push(row)
+        }
+        return rows
+    }
+
+
     private getNeighbours(cell: Cell): Array<Cell> {
         const x = cell.getX()
         const y = cell.getY()

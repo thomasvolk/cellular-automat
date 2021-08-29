@@ -2,10 +2,10 @@ export {Cell} from './Cell'
 import {Universe} from './Universe'
 export {Universe} from './Universe'
 import {Rule} from './Rule'
-export {EEFFRule} from './Rule'
+export {Rule, EEFFRule, BSRule} from './Rule'
 import {Configuration} from './Configuration'
 export {Configuration} from './Configuration'
-export {Format, JsonFormat} from './Format'
+export {Format, JsonFormat, RleFormat} from './Format'
 
 
 export class Runner {
@@ -50,9 +50,17 @@ export class CellularAutomat{
             this.cellSize = cellSize
         }
         else {
-            this.cellSize = Math.round(
-                Math.min(this.canvas.height, this.canvas.width) / Math.max(config.universe.width, config.universe.height))
+            const canvasMinDimension = Math.min(this.canvas.height, this.canvas.width)
+            const configMaxDimension = Math.max(config.universe.width, config.universe.height)
+            if(configMaxDimension > canvasMinDimension) {
+                this.cellSize = 1
+                this.canvas.height = config.universe.height
+                this.canvas.width = config.universe.width
             }
+            else {
+                this.cellSize = Math.round(canvasMinDimension / configMaxDimension)
+            }
+        }
         if(this.cellSize > (frameSize * 3) ) {
             this.cellBoxSize = this.cellSize - (frameSize * 2)
             this.frameSize = frameSize
@@ -84,8 +92,13 @@ export class CellularAutomat{
             }
         }
     }
+
+    clear() {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height)
+    }
     
     random() {
+        this.clear()
         this.config.universe.reset()
         for (var c of this.config.universe.getCells()) {
             c.enterValue(Math.floor(Math.random() * Math.floor(2)))
