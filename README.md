@@ -1,4 +1,4 @@
-# cellular-js
+# cellular-automat
 
 cellular-automat is a javascript library of a cellular automat like conways game of life.
 
